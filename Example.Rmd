@@ -1,0 +1,26 @@
+---
+title: "GLM Examples"
+author: "Netasha"
+date: "2024-05-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Lets enter the data for binomial using the logit link - y response is equal to proportion of failures and success
+```{r}
+Ldose<-rep(0:5,2) #log-base2 dosages of the toxin given by Idose
+numdead<-c(1,4,9,13,18,20,0,2,6,10,12,16) #the number of dead budworms are given by the numdead
+sex<-factor(rep(c("M", "F"),c(6,6)))#sex is a factor with male and female assignment
+SF<-cbind(numdead, numalive=20-numdead) #number of alibe are given by subtracting 20 from numdead
+print(SF) #starting on line seven we have the number of dead and alive females budwoms
+```
+## Run a GLM using the logit link
+```{r}
+budworm<-glm(formula = SF~ -1+ sex+Ldose, family= binomial)
+summary(budworm)
+```
+
+
