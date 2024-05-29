@@ -22,5 +22,8 @@ print(SF) #starting on line seven we have the number of dead and alive females b
 budworm<-glm(formula = SF~ -1+ sex+Ldose, family= binomial)
 summary(budworm)
 ```
-
+## Goodness of fit 
+```{r}
+1-pchisq(deviance(budworm),df.residual(budworm))
+```
 
